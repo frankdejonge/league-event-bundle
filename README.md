@@ -26,6 +26,7 @@ Setting priorities is also possible:
 
 ```yml
 ---
+services:
     my_listener:
         class: My\Awesome\Listener
         tags:
