@@ -28,7 +28,7 @@ class RegisterEmittersPassTest extends AbstractCompilerPassTestCase
     {
         $emitterDefinition = new Definition(Emitter::class);
         $emitterDefinition->addTag('league_event.emitter', [
-            'tag_name' => 'league_event.listener'
+            'listener_tag' => 'league_event.listener'
         ]);
         $this->setDefinition('emitter_service', $emitterDefinition);
 
@@ -61,7 +61,7 @@ class RegisterEmittersPassTest extends AbstractCompilerPassTestCase
     {
         $emitterDefinition = new Definition(stdClass::class);
         $emitterDefinition->addTag('league_event.emitter', [
-            'tag_name' => 'league_event.listener'
+            'listener_tag' => 'league_event.listener'
         ]);
         $this->setDefinition('invalid_emitter', $emitterDefinition);
         $this->compile();
@@ -70,7 +70,7 @@ class RegisterEmittersPassTest extends AbstractCompilerPassTestCase
     /**
      * @test
      * @expectedException LogicException
-     * @expectedExceptionMessage The "tag_name" attribute should be defined on the league_event.emitter tag on service invalid_emitter
+     * @expectedExceptionMessage The "listener_tag" attribute should be defined on the league_event.emitter tag on service invalid_emitter
      */
     public function it_should_reject_emitters_with_invalid_emitter_tags()
     {
@@ -89,7 +89,7 @@ class RegisterEmittersPassTest extends AbstractCompilerPassTestCase
     {
         $emitterDefinition = new Definition(Emitter::class);
         $emitterDefinition->addTag('league_event.emitter', [
-            'tag_name' => 'league_event.listener'
+            'listener_tag' => 'league_event.listener'
         ]);
         $this->setDefinition('invalid_emitter', $emitterDefinition);
 
@@ -112,7 +112,7 @@ class RegisterEmittersPassTest extends AbstractCompilerPassTestCase
     {
         $emitterDefinition = new Definition(Emitter::class);
         $emitterDefinition->addTag('league_event.emitter', [
-            'tag_name' => 'league_event.listener'
+            'listener_tag' => 'league_event.listener'
         ]);
         $this->setDefinition('invalid_emitter', $emitterDefinition);
 

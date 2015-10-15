@@ -11,7 +11,7 @@ services:
         class: League\Event\Emitter
         tags:
             - name: league_event.emitter
-              tag_name: my_emitter.listener
+              listener_tag: my_emitter.listener
     my_listener:
         class: My\Awesome\Listener
         tags:

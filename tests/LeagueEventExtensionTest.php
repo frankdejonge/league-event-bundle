@@ -32,7 +32,7 @@ class LeagueEventExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
             'league_event.emitter',
             'league_event.emitter',
-            ['tag_name' => 'league_event.listener']
+            ['listener_tag' => 'league_event.listener']
         );
     }
 }

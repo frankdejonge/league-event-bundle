@@ -28,18 +28,18 @@ class RegisterEmittersPass implements CompilerPassInterface
             $this->guardAgainstInvalidClass($emitterService, EmitterInterface::class);
 
             foreach ($tags as $tag) {
-                if (! isset($tag['tag_name'])) {
+                if (! isset($tag['listener_tag'])) {
                     throw new LogicException(
                         sprintf(
                             'The "%s" attribute should be defined on the %s tag on service %s',
-                            'tag_name',
+                            'listener_tag',
                             'league_event.emitter',
                             $id
                         )
                     );
                 }
 
-                $this->registerListenerForService($container, $emitterService, $tag['tag_name']);
+                $this->registerListenerForService($container, $emitterService, $tag['listener_tag']);
             }
         }
     }
