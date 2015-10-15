@@ -1,0 +1,98 @@
+<?php
+
+namespace League\Event\EventBundle\DependencyInjection\CompilerPass;
+
+use League\Event\EmitterInterface;
+use League\Event\ListenerInterface;
+use LogicException;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
+
+class RegisterEmittersPass implements CompilerPassInterface
+{
+    /**
+     * You can modify the container here before it is dumped to PHP code.
+     *
+     * @param ContainerBuilder $container
+     *
+     * @throws Exception
+     */
+    public function process(ContainerBuilder $container)
+    {
+        $emitterIds = $container->findTaggedServiceIds('league_event.emitter');
+
+        foreach ($emitterIds as $id => $tags) {
+            $emitterService = $container->getDefinition($id);
+            $this->guardAgainstInvalidClass($emitterService, EmitterInterface::class);
+
+            foreach ($tags as $tag) {
+                if (! isset($tag['tag_name'])) {
+                    throw new LogicException(
+                        sprintf(
+                            'The "%s" attribute should be defined on the %s tag on service %s',
+                            'tag_name',
+                            'league_event.emitter',
+                            $id
+                        )
+                    );
+                }
+
+                $this->registerListenerForService($container, $emitterService, $tag['tag_name']);
+            }
+        }
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param Definition       $emitter
+     * @param string           $tagName
+     */
+    private function registerListenerForService(ContainerBuilder $container, Definition $emitter, $tagName)
+    {
+        $taggedServiceIds = $container->findTaggedServiceIds($tagName);
+
+        foreach ($taggedServiceIds as $taggedServiceId => $tags) {
+            $listenerDefinition = $container->getDefinition($taggedServiceId);
+            $this->guardAgainstInvalidClass($listenerDefinition, ListenerInterface::class);
+
+            foreach ($tags as $tag) {
+                if (! isset($tag['event'])) {
+                    throw new LogicException(sprintf(
+                        'An "event" attributes is missing from tag named %s for service %s.',
+                        $tagName,
+                        $taggedServiceId
+                    ));
+                }
+
+                $arguments = [$tag['event'], new Reference($taggedServiceId)];
+
+                if (isset($tag['priority'])) {
+                    $arguments[] = (int) $tag['priority'];
+                }
+
+                $emitter->addMethodCall('addListener', $arguments);
+            }
+        }
+    }
+
+    /**
+     * @param Definition $emitterService
+     * @param string     $expectedClass
+     *
+     * @throws LogicException
+     */
+    private function guardAgainstInvalidClass(Definition $emitterService, $expectedClass)
+    {
+        $definedClass = $emitterService->getClass();
+
+        if (is_subclass_of($definedClass, $expectedClass) === false) {
+            throw new LogicException(sprintf(
+                'Invalid class type registered, expected %s, got %s.',
+                $expectedClass,
+                $definedClass
+            ));
+        }
+    }
+}
