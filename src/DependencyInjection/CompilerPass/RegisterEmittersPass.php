@@ -5,6 +5,7 @@ namespace FrankDeJonge\LeagueEventBundle\DependencyInjection\CompilerPass;
 use League\Event\EmitterInterface;
 use League\Event\ListenerInterface;
 use LogicException;
+use ReflectionClass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -79,18 +80,19 @@ class RegisterEmittersPass implements CompilerPassInterface
 
     /**
      * @param Definition $emitterService
-     * @param string     $expectedClass
+     * @param string     $expectedInterface
      *
      * @throws LogicException
      */
-    private function guardAgainstInvalidClass(Definition $emitterService, $expectedClass)
+    private function guardAgainstInvalidClass(Definition $emitterService, $expectedInterface)
     {
         $definedClass = $emitterService->getClass();
+        $reflection = new ReflectionClass($definedClass);
 
-        if (is_subclass_of($definedClass, $expectedClass) === false) {
+        if ($reflection->implementsInterface($expectedInterface) === false) {
             throw new LogicException(sprintf(
                 'Invalid class type registered, expected %s, got %s.',
-                $expectedClass,
+                $expectedInterface,
                 $definedClass
             ));
         }
