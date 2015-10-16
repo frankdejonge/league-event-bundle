@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Event\EventBundle\Tests\Stub;
+namespace FrankDeJonge\LeagueEventBundle\Tests\Stub;
 
 use League\Event\AbstractListener;
 use League\Event\EventInterface;

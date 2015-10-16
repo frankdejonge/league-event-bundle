@@ -1,8 +1,8 @@
 <?php
 
-namespace League\Event\EventBundle;
+namespace FrankDeJonge\LeagueEventBundle;
 
-use League\Event\EventBundle\DependencyInjection\CompilerPass\RegisterEmittersPass;
+use FrankDeJonge\LeagueEventBundle\DependencyInjection\CompilerPass\RegisterEmittersPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

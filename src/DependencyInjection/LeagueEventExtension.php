@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Event\EventBundle\DependencyInjection;
+namespace FrankDeJonge\LeagueEventBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

@@ -1,9 +1,9 @@
 <?php
 
-namespace League\Event\EventBundle\Tests;
+namespace FrankDeJonge\LeagueEventBundle\Tests;
 
-use League\Event\EventBundle\DependencyInjection\CompilerPass\RegisterEmittersPass;
-use League\Event\EventBundle\LeagueEventBundle;
+use FrankDeJonge\LeagueEventBundle\DependencyInjection\CompilerPass\RegisterEmittersPass;
+use FrankDeJonge\LeagueEventBundle\LeagueEventBundle;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace League\Event\EventBundle\Tests;
+namespace FrankDeJonge\LeagueEventBundle\Tests;
 
 use League\Event\Emitter;
-use League\Event\EventBundle\DependencyInjection\LeagueEventExtension;
+use FrankDeJonge\LeagueEventBundle\DependencyInjection\LeagueEventExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 

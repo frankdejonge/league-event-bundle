@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Event\EventBundle\DependencyInjection\CompilerPass;
+namespace FrankDeJonge\LeagueEventBundle\DependencyInjection\CompilerPass;
 
 use League\Event\EmitterInterface;
 use League\Event\ListenerInterface;

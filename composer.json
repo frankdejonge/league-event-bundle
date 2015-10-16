@@ -10,12 +10,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "League\\Event\\EventBundle\\": "src/"
+            "FrankDeJonge\\LeagueEventBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "League\\Event\\EventBundle\\Tests\\": "tests/"
+            "FrankDeJonge\\LeagueEventBundle\\Tests\\": "tests/"
         }
     },
     "require": {

@@ -1,10 +1,10 @@
 <?php
 
-namespace League\Event\EventBundle\Tests\CompilerPass;
+namespace FrankDeJonge\LeagueEventBundle\Tests\CompilerPass;
 
 use League\Event\Emitter;
-use League\Event\EventBundle\DependencyInjection\CompilerPass\RegisterEmittersPass;
-use League\Event\EventBundle\Tests\Stub\ValidListener;
+use FrankDeJonge\LeagueEventBundle\DependencyInjection\CompilerPass\RegisterEmittersPass;
+use FrankDeJonge\LeagueEventBundle\Tests\Stub\ValidListener;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use stdClass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
