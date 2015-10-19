@@ -1,6 +1,32 @@
 # League Event Bundle for Symfony2
 
+## Installation
+
+```
+composer require frankdejonge/league-event-bundle
+```
+
 ## Usage
+
+By default an emitter is registered under the `league_event.emitter` id.
+
+```php
+$emitter = $container->get('league_event.emitter');
+```
+
+Event listeners can be added to the emitter by tagging it with `league_event.emitter`.
+
+```yaml
+---
+services:
+    my_listener:
+        class: Some\Listener
+        tags:
+            - name: league_event.listener
+              event: event.name
+```
+
+## Advanced usage
 
 Register custom emitters with custom listener bindings:
 
@@ -18,9 +44,6 @@ services:
             - name: my_emitter.listener
               event: My\Awesome\DomainEvent
 ```
-
-Out of the box a `league_event.emitter` service is registered which you can bind to using
-the `league_event.listener` tag.
 
 Setting priorities is also possible:
 
