@@ -6,6 +6,16 @@
 composer require frankdejonge/league-event-bundle
 ```
 
+Register the bundle:
+
+```php
+$bundles = array(
+    ...
+    new FrankDeJonge\LeagueEventBundle\LeagueEventBundle(),
+    ...
+);
+```
+
 ## Usage
 
 By default an emitter is registered under the `league_event.emitter` id.
