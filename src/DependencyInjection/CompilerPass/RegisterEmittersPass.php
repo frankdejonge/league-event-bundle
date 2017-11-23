@@ -18,7 +18,7 @@ class RegisterEmittersPass implements CompilerPassInterface
      *
      * @param ContainerBuilder $container
      *
-     * @throws Exception
+     * @throws LogicException
      */
     public function process(ContainerBuilder $container)
     {
